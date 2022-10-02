@@ -1,0 +1,24 @@
+<%= render "partials/navigation" %>
+
+<h1 class="mt-4 ml-4 text-2xl font-semibold">Stock Listings</h1>
+
+<div>
+
+  <%= form_with(url: check_stock_path) do |f| %>
+
+    <%= f.text_field :search, placeholder: "Ticker | Symbol", class:"border-2 border-lime-500 rounded indent-2 ml-8 mt-4" %>
+    <%= f.submit "Search", class: "bg-lime-500 hover:bg-lime-700 text-white  font-semibold py px-2 rounded cursor-pointer" %>
+
+  <% end %>
+
+</div>
+
+<div class="mt-12 ml-12">
+
+  <% @stocks.each do |stock| %>
+
+    <%= render "partials/stock_item", stock: stock %>
+    <hr>
+  <% end %>
+
+</div>

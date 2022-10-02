@@ -1,0 +1,15 @@
+<div class= "ml-12 mt-4">
+  <h3><%= title %></h3>
+  <p><%= portfolio && status == "approved" ? 
+    "You may now add stocks to your portfolio" : 
+      "To begin trading stocks, You need to:" %></p>
+  <ul>
+    <li><%= "✅" if portfolio %> Setup your Trader Portfolio</li>
+    <li><%= "✅" if status == "approved" %> Get your Trader Account approved <em><%= "(This might take some time)" if status != "approved" %></em></li>
+  </ul>
+  <% if redirect %>
+  <div class= "mt-4">
+    <%= link_to "Get Started", trader_portfolio_path, class: "bg-lime-500 hover:bg-lime-700 text-white  font-bold py-2 px-2 rounded" %>
+  </div>
+  <% end %>
+</div>

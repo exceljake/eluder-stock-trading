@@ -1,0 +1,27 @@
+<%= link_to stock_path(stock) do %>
+  <table class="table-fixed">
+  <thead>
+   <tr>
+    <th>Company</th>
+    <th>Symbol</th>
+    <th>Price</th>
+    <th>Last Updated</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+    <img src="<%= stock.logo %>" 
+        alt="<%= stock.name %>"/><h3><%= stock.name %></h3></td>
+    <td><p>Symbol: <%= stock.symbol %></p></td>
+    <td><p>Price: <%= format_currency(stock.latest_price) %></p></td>
+    <td><p><em>
+        Updated <%= stock.updated_at.localtime.strftime("%l:%M %p %e %b %Y") %>
+      </em></p></td>
+  </tr>
+    </div>
+  </div>
+  </tbody>
+  </table>
+
+<% end %>

@@ -1,0 +1,36 @@
+<%= render "partials/navigation" %>
+
+<h1 class="text-2xl font-semibold mt-4 ml-4">All Trader Accounts</h1>
+
+<% unless @pending.empty? %>
+
+  <div>
+    <h2 class="font-semibold ml-8 mt-4">Pending Accounts</h2>
+
+      <% @pending.each do |account| %>
+
+          <%= render "partials/account_item", account: account %>
+
+      <% end %>
+
+  </div>
+
+<% end %>
+<% unless @approved.empty? %>
+
+  <div>
+
+    <h2 class="font-semibold ml-8 mt-4">Approved Accounts</h2>
+
+      <% @approved.each do |account| %>
+
+        <%= render "partials/account_item", account: account %>
+
+      <% end %>
+
+  </div>
+
+<% end %>
+<div class="mt-8 ml-12">
+<%= link_to "Create", new_account_path, class: "bg-lime-500 hover:bg-lime-700 text-white  font-semibold px-4 rounded"%>
+</div>

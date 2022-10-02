@@ -1,0 +1,5 @@
+  <div class="ml-8 mt-2">
+      <p><span class="font-semibold">Name: </span><%= account.last_name %>, <%= account.first_name %></p>
+      <p><span class="font-semibold">Email: </span><%= account.email %></p>
+      <%= link_to "See account", account_path(account), class:"bg-lime-500 hover:bg-lime-700 text-white  font-semibold px-4 rounded" %>
+  </div>

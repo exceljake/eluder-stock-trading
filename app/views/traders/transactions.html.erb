@@ -1,0 +1,16 @@
+<%= render "partials/navigation" %>
+
+<h1 class="mt-4 ml-4 text-2xl font-semibold">Your Transactions</h1>
+
+<div class="ml-12 mt-4">
+<h2>All Transactions</h2>
+<%= render "partials/transaction_group", collection: @all_transactions, admin: false %>
+</div>
+
+<!--
+<h2>Buy Transactions</h2>
+<%= render "partials/transaction_group", collection: @buy_transactions, admin: false %>
+
+<h3>Sell Transactions</h3>
+<%= render "partials/transaction_group", collection: @sell_transactions, admin: true %>
+-->

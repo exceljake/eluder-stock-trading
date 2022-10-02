@@ -1,0 +1,69 @@
+<%= render "partials/navigation" %>
+
+<h1 class="mt-4 ml-4 text-2xl font-semibold">Trader Profile</h1>
+
+<div class="ml-12 mt-8">
+  <h2 class="text-2xl font-semibold">Account</h2>
+  <p><span class="font-semibold">Name: </span><%= @account.first_name %> <%= @account.last_name %></p>
+  <p><span class="font-semibold">Email: </span><%= @account.email %></p>
+  <%= @account.status.capitalize %>
+  <div>
+    </div>
+
+      <% if @account.status == "pending" %>
+
+        <%= link_to "Approve", approve_account_path(@account), data: { turbo_method: :patch }, class: "bg-lime-500 hover:bg-lime-700 text-white  font-semibold px-4 rounded" %>
+
+      <% end %>
+
+    </div>
+    <div class="ml-12 mt-2">
+      <%= link_to "Edit", edit_account_path(@account), class: "bg-lime-500 hover:bg-lime-700 text-white  font-semibold px-4 rounded" %> |
+      <%= link_to "Delete", account_path(@account), data: { turbo_method: :delete, turbo_confirm: "This will delete current trader account and all relevant data. Proceed?" }, class: "bg-red-500 hover:bg-red-700 text-white  font-semibold px-4 rounded" %>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4 ml-12">
+  <h2 class="text-2xl font-semibold">Portfolio</h2>
+
+  <% if !@account.portfolio or @account.status == "pending" %>
+    
+    <%= render "partials/notice", title: "Not Available", check: { account: @account } %>
+
+  <% elsif @account.portfolio %>
+
+    <p>Total Worth: <%= format_currency(@account.portfolio.overall_worth) %></p>
+    <h3>Properties</h3>
+
+    <% if !@account.properties.empty? %>
+      <% @account.properties.each do |property| %>
+
+        <%= render "partials/property_item", admin: true, property: property %>
+
+      <% end %>
+    <% else %>
+
+      <p>Trader does not own any stock</p>
+
+    <% end %>
+  <% end %>
+
+</div>
+
+<div class="mt-4 ml-12">
+  <h2 class="text-2xl font-semibold">Latest Transactions</h2>
+
+  <% if !@account.transactions.empty? %>
+    <% @account.transactions.each do |transaction| %>
+
+      <%= render "partials/transaction_item", transaction: transaction, time: false, admin: true %><br/>
+      
+    <% end %>
+  <% else %>
+
+    <p>Trader has not made any transactions</p>
+
+  <% end %>
+
+</div>

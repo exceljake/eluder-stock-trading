@@ -1,0 +1,23 @@
+<%= render "partials/navigation" %>
+<h1 class="mt-4 ml-4 text-2xl font-semibold">Transaction Details</h1>
+
+<div class="ml-12 mt-8">
+  <div>
+    <img src="<%= @transaction.stock.logo %>" alt="<%= @transaction.stock.name %>">
+    <p><%= @transaction.stock.name %></p>
+    <p>Symbol: <%= @transaction.stock.symbol %></p>
+  </div>
+  <div>
+    <h2>Transaction No: <%= @transaction.id %></h2>
+    <p>Trader: <%= @transaction.user.first_name %> <%= @transaction.user.last_name %></p>
+    <p>Type: <%= @transaction.action.upcase %></p>
+    <p>Price: <%= format_currency(@transaction.price) %></p>
+    <p>Quantity: <%= @transaction.quantity %> <%= "unit".pluralize(@transaction.quantity) %></p>
+    <p>Total Amount: <%= format_currency(@transaction.total_amount) %></p>
+    <p>Completed:<%= @transaction.created_at.localtime.strftime("%l:%M %p %e %b %Y") %></p>
+  </div>
+
+<%= link_to "See #{@transaction.stock.symbol} Profile", stock_path(@transaction.stock), class: "bg-lime-500 hover:bg-lime-700 text-white font-semibold px-4 rounded" %> <br/>
+
+<%= link_to "All Transactions", admin_transactions_path, class: "bg-lime-500 hover:bg-lime-700 text-white  font-semibold px-4 rounded" %>
+</div>
